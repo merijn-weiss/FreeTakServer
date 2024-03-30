@@ -35,24 +35,24 @@ Volume=/opt/fts/volumes:/opt/fts/:Z,U
    Environment=FTS_API_PORT=19023
    Environment=FTS_FED_PORT=9000
 
-   Environment=FTS_DP_ADDRESS=127.0.0.1
-   Environment=FTS_USER_ADDRESS=127.0.0.1
+   Environment=FTS_DP_ADDRESS=93.119.14.158
+   Environment=FTS_USER_ADDRESS=93.119.14.158
    Environment=FTS_API_ADDRESS=0.0.0.0
 
    Environment=FTS_ROUTING_PROXY_SUBSCRIBE_PORT=19030
-   Environment=FTS_ROUTING_PROXY_SUBSCRIBE_IP=127.0.0.1
+   Environment=FTS_ROUTING_PROXY_SUBSCRIBE_IP=93.119.14.158
 
    Environment=FTS_ROUTING_PROXY_PUBLISHER_PORT=19032
-   Environment=FTS_ROUTING_PROXY_PUBLISHER_IP=127.0.0.1
+   Environment=FTS_ROUTING_PROXY_PUBLISHER_IP=93.119.14.158
 
    Environment=FTS_ROUTING_PROXY_SERVER_PORT=19031
-   Environment=FTS_ROUTING_PROXY_SERVER_IP=127.0.0.1
+   Environment=FTS_ROUTING_PROXY_SERVER_IP=93.119.14.158
 
    Environment=FTS_INTEGRATION_MANAGER_PULLER_PORT=19033 # port to receive worker responses by the integration manager
-   Environment=FTS_INTEGRATION_MANAGER_PULLER_ADDRESS=127.0.0.1 # address to receive worker responses by the integration manager
+   Environment=FTS_INTEGRATION_MANAGER_PULLER_ADDRESS=93.119.14.158 # address to receive worker responses by the integration manager
 
    Environment=FTS_INTEGRATION_MANAGER_PUBLISHER_PORT=19034 # port from which to publish messages by the integration manager
-   Environment=FTS_INTEGRATION_MANAGER_PUBLISHER_ADDRESS=127.0.0.1 # address from which to publish messages by the integration manager
+   Environment=FTS_INTEGRATION_MANAGER_PUBLISHER_ADDRESS=93.119.14.158 # address from which to publish messages by the integration manager
 
 # Misc Settings
    Environment=FTS_OPTIMIZE_API=True
