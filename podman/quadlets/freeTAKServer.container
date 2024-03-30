@@ -1,0 +1,74 @@
+[Unit]
+Description=FreeTAKServer All-In-One Application Container
+
+[Container]
+Image=localhost/freetakserver:2.3.1
+ContainerName=freetakserver
+Label=app=freetakserver
+
+# DataPackagePort
+PublishPort=8080:8080
+# CoTPort
+PublishPort=8087:8087
+# SSLCoTPort
+PublishPort=8089:8089
+# SSLDataPackagePort
+PublishPort=8443:8443
+# FederationPort
+# PublishPort=9000:9000
+# APIPort - Don't expose by default
+# PublishPort=19023:19023
+
+Volume=/opt/fts/volumes:/opt/fts/:Z,U
+
+# The ChangeMe section
+   Secret=FTS_FED_PASSWORD,type=env,target=FTS_FED_PASSWORD
+   Secret=FTS_CLIENT_CERT_PASSWORD,type=env,target=FTS_CLIENT_CERT_PASSWORD
+   Secret=FTS_SECRET_KEY,type=env,target=FTS_SECRET_KEY
+
+   Environment=FTS_NODE_ID="679fdaf9-7693-473f-8f73-e8b2773fd4f7"
+   Environment=FTS_CONNECTION_MESSAGE="FreeTAKServer@Nyx - Parrot 01"
+
+# Networking
+   Environment=FTS_COT_PORT=8087
+   Environment=FTS_SSLCOT_PORT=8089
+   Environment=FTS_API_PORT=19023
+   Environment=FTS_FED_PORT=9000
+
+   Environment=FTS_DP_ADDRESS=127.0.0.1
+   Environment=FTS_USER_ADDRESS=127.0.0.1
+   Environment=FTS_API_ADDRESS=0.0.0.0
+
+   Environment=FTS_ROUTING_PROXY_SUBSCRIBE_PORT=19030
+   Environment=FTS_ROUTING_PROXY_SUBSCRIBE_IP=127.0.0.1
+
+   Environment=FTS_ROUTING_PROXY_PUBLISHER_PORT=19032
+   Environment=FTS_ROUTING_PROXY_PUBLISHER_IP=127.0.0.1
+
+   Environment=FTS_ROUTING_PROXY_SERVER_PORT=19031
+   Environment=FTS_ROUTING_PROXY_SERVER_IP=127.0.0.1
+
+   Environment=FTS_INTEGRATION_MANAGER_PULLER_PORT=19033 # port to receive worker responses by the integration manager
+   Environment=FTS_INTEGRATION_MANAGER_PULLER_ADDRESS=127.0.0.1 # address to receive worker responses by the integration manager
+
+   Environment=FTS_INTEGRATION_MANAGER_PUBLISHER_PORT=19034 # port from which to publish messages by the integration manager
+   Environment=FTS_INTEGRATION_MANAGER_PUBLISHER_ADDRESS=127.0.0.1 # address from which to publish messages by the integration manager
+
+# Misc Settings
+   Environment=FTS_OPTIMIZE_API=True
+   Environment=FTS_DATA_RECEPTION_BUFFER=1024
+   Environment=FTS_MAX_RECEPTION_TIME=4
+   Environment=FTS_NUM_ROUTING_WORKERS=3
+   Environment=FTS_COT_TO_DB=True
+# number of milliseconds to wait between each iteration of main loop
+# decreasing will increase CPU usage and server performance
+# increasing will decrease CPU usage and server performance
+   Environment=FTS_MAINLOOP_DELAY=100
+   Environment=FTS_EMERGENCY_RADIUS=0 # radius of emergency within-which users will receive it
+   Environment=FTS_LOG_LEVEL="info"
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target
